@@ -1,0 +1,358 @@
+* {
+  border: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Raleway", sans-serif;
+}
+
+body {
+  background: rgb(250, 250, 250) url(http://lorempixel.com/1920/1080/nature/);
+  font-family: Lato, Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  text-decoration: none;
+}
+
+#hero img {
+}
+
+#hero {
+  background-attachment: fixed;
+  background-color: #484a5e;
+  background-image: url("img/other/hands-united.jpg");
+  background-position: center center;
+  background-size: cover;
+  box-shadow: 0 0.25em 0.5em 0 rgba(0, 0, 0, 0.25);
+  position: relative;
+  text-align: center;
+  z-index: 21;
+  height: 0rem;
+}
+
+#hero:before {
+  content: "";
+  display: inline-block;
+  height: 100vh;
+  vertical-align: middle;
+  width: 1%;
+}
+
+#hero .content {
+  display: inline-block;
+  margin-right: 1%;
+  max-width: 95%;
+  padding: 6em;
+  position: relative;
+  text-align: middle;
+  vertical-align: middle;
+  z-index: 1;
+}
+
+#hero .content header {
+  display: inline-block;
+  vertical-align: middle;
+  text-shadow: 2px 2px 2px #333333;
+  color: #d22b2b;
+}
+
+#hero .img {
+  border-radius: 100%;
+  display: inline-block;
+  height: 18em;
+  margin-left: 3em;
+  vertical-align: middle;
+  width: 40;
+}
+
+.buttonSelect {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+html {
+  font-size: 100%;
+}
+
+h1 {
+  font: 2.875em "PT Sans", Sans-Serif;
+}
+
+p {
+  margin-block-end: 0.3em;
+}
+
+#title,
+#description {
+  padding-top: 2rem;
+  text-align: center;
+  font-weight: bolder;
+  font-family: "Raleway", sans-serif;
+  margin-bottom: 0;
+}
+
+form {
+  background-color: #ececec;
+  padding: 1em;
+  border: 1px solid #c1c1c1;
+  margin: 1rem auto 2rem auto;
+  max-width: 700px;
+  padding: 1em;
+}
+
+.form-group {
+  display: grid;
+  grid-template-columns: 100%;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea,
+select {
+  padding: 8px 5px;
+}
+
+.input-group li {
+  display: block;
+  padding-bottom: 3px;
+  text-indent: -15px;
+  text-align: left;
+  list-style: none;
+}
+
+.input-group input {
+  width: 13px;
+  height: 13px;
+  padding: 0;
+  margin: 0;
+  vertical-align: bottom;
+  position: relative;
+  top: -3px;
+  *overflow: hidden;
+  text-align: left;
+}
+
+.button {
+  background-color: #ffffff;
+  color: #2d6363;
+  cursor: pointer;
+  border-width: 0px 0px 3px 0px;
+  border-style: solid;
+  border-color: #5d9e9a;
+  border-radius: 5px;
+  padding: 10px;
+  text-transform: uppercase;
+}
+
+.button:hover {
+  background-color: #8ed2d1;
+  border-color: #2d6363;
+}
+
+@media (min-width: 400px) {
+  .form-group {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-gap: 16px;
+  }
+
+  .form-group p {
+    margin-block-end: 1em;
+  }
+
+  label,
+  .form-group p {
+    text-align: right;
+    grid-column: 1 / 2;
+    align-items: start;
+  }
+
+  input,
+  button,
+  .input-group {
+    grid-column: 2 / 3;
+    margin-bottom: 0;
+  }
+}
+
+.content {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 2.75rem;
+  padding-bottom: 3.25rem;
+}
+
+.content iframe {
+  border-radius: 5px;
+}
+
+.content .searchResults {
+  font-size: 1.25rem;
+}
+
+.content .searchResults h2{
+  font-weight: bolder;
+}
+
+.content .results {
+  padding-top: 20px;
+}
+
+.content .results ul {
+  list-style: none;
+  padding-left: 1.5rem;
+}
+
+.content .helpName {
+  padding: 1.25rem 0 1.25rem 0;
+}
+
+footer {
+  background-color: #ececec;
+  opacity: 20;
+  box-shadow: 5px 10px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 0rem 2rem 0rem;
+}
+
+footer h3 {
+  padding-bottom: 1.5rem;
+}
+
+.links a {
+  text-decoration: none;
+  text-align: center;
+}
+.links a:hover {
+  color: grey;
+}
+
+// LOGIN
+
+/* Simple Reset */
+
+/* Form Layout */
+.formWrapper {
+  background: #fafafa;
+  margin: 3em auto;
+  padding: 0 1em;
+  max-width: 370px;
+}
+
+h1 {
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+.formItem {
+  margin-bottom: 0.75em;
+  width: 100%;
+}
+
+.formItem input {
+  background: #fafafa;
+  border: none;
+  border-bottom: 2px solid #e9e9e9;
+  color: #666;
+  font-size: 1em;
+  height: 50px;
+  transition: border-color 0.3s;
+  width: 100%;
+}
+
+.formItem input:focus {
+  border-bottom: 2px solid #c0c0c0;
+  outline: none;
+}
+
+.button-panel {
+  margin: 2em 0 0;
+  width: 100%;
+}
+
+.button-panel .button {
+  background: #f16272;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  height: 50px;
+  font-size: 1.2em;
+  letter-spacing: 0.05em;
+  text-align: center;
+  text-transform: uppercase;
+  transition: background 0.3s ease-in-out;
+  width: 100%;
+}
+
+.button:hover {
+  background: #ee3e52;
+}
+
+.formFooter {
+  font-size: 1em;
+  padding: 2em 0;
+  text-align: center;
+}
+
+.formFooter a {
+  color: #8c8c8c;
+  text-decoration: none;
+  transition: border-color 0.3s;
+}
+
+.formFooter a:hover {
+  border-bottom: 1px dotted #8c8c8c;
+}
+
+.helpButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 3rem;
+}
+
+.helpButton input {
+  background-color: red;
+  padding: 2rem 12rem 2rem 12rem;
+  color: #ffffff;
+  font-weight: bolder;
+  font-size: 30px;
+}
+
+.navbar-brand {
+  font-size: 2rem;
+  font-family: "Raleway", sans-serif;
+}
+
+.navbar-brand img {
+  padding-left: 20px;
+  width: 5rem;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    /*       margin-left: 5px; */
+  }
+}
+
+.navbar-nav > li {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+ .navbar-nav li a {
+  color: #484848;
+  text-decoration: uppercase;
+}

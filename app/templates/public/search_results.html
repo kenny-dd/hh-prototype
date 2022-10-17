@@ -1,0 +1,42 @@
+{% extends "public/templates/public_template.html" %}
+
+{% block title %}Helping Hands | Risk Select {% endblock %}
+
+{% block main %}
+
+<h1 id="title">Available Organizations </h1>
+<hr>
+<div class="content">
+      <div class="searchResults">
+        <h2>Search Results:</h2>
+        <div class="results">
+          <div class="helpName">
+            {% for orgs in organizations %}
+            <h4>{{orgs}}</h4>
+            {% endfor %}
+            <ul>
+              {% for services in services %}
+              <li>
+                {{services}}
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <iframe src="https://www.google.com/maps/d/embed?mid=1rcLi-jGBwfwX8qxQdwvOwSGE35t0NRU&ehbc=2E312F" width="640" height="520"></iframe>
+    </div>
+  
+
+{% endblock %}
+
+<h4>Looping</h4>
+            <hr>
+                <ul>
+                    {% for lang in langs %}
+                    <li>
+                        {{lang}}
+                    </li>
+                    {% endfor %}
+                </ul>
