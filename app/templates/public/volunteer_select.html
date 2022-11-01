@@ -1,0 +1,42 @@
+{% extends "./public/base_template/public_template.html" %}
+
+{% block title %}Helping Hands | Volunteer Select{% endblock %}
+
+{% block main %}
+<h1 id="title">Volunteer Select {{ myTitle}} </h1>
+<hr>
+
+    <form id="survey-form">
+      <div class="form-group">
+      <label id="name-label" for="name">Name:</label>
+      <input id="name" type="text" required placeholder="First Name">
+      <span class="validity"></span>
+      </div>     
+      
+      <div class="form-group">
+      <label id="name-label" for="name">Zipcode: </label>
+      <input id="name" type="text" required placeholder="5 Digit Zipcode">
+      <span class="validity"></span>
+      </div>
+      
+      <div class="search-group">
+        <a class='search-btn' href="/search_results">GET DEVICE LOCATION</a>
+      </div>
+     
+      <div class="form-group">       
+      <p>Where would you like to volunteer? <br>(Check all that apply)</p>
+      <div class="input-group">
+        <ul>
+            {% for list in selectList %}
+            <li><input type="checkbox" name="{list[0]}"> {{list[1]}}</li>
+          {% endfor %}   
+        </ul>
+    </div>
+      </div>
+    
+     
+      <div class="search-group">
+        <a class='search-btn' href="/search_results">SEARCH</a>
+      </div>
+    </form>
+{% endblock %}

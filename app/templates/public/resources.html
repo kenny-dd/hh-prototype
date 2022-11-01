@@ -1,24 +1,36 @@
-{% extends "public/templates/public_template.html" %}
+{% extends "public/base_template/public_template.html" %} 
 
-{% block title %}Helping Hands | Resources{% endblock %}
+{% block title %}Helping Hands | Resources{% endblock %} 
 
 {% block main %}
-  <h1 id="title">Resources</h1>
-  <hr>
-  <div class="content">
-      <div class="searchResults">
-        <div class="results">
-          <div class="helpName">
-            <h3>Addiction:</h3>
-            <ul>
-              {% for link in resources %}
-              <li>
-                {{link}}
-              </li>
-              {% endfor %}
-            </ul>
-          </div>
-        </div>
+<h1 id="title">Resources</h1>
+<hr />
+<div class="content">
+  <div class="searchResults">
+    <div class="results">
+      <div class="helpName">
+        <h3 class="resourceTitle">Addiction:</h3>
+        <ul>
+          {% for add in addiction %}
+          <li><a target="_blank" href="{{add}}">{{ add }}</a></li>
+          {% endfor %}
+        </ul>
+
+        <h3 class="resourceTitle">Health Center:</h3>
+        <ul>
+          {% for healthLink in health %}
+          <li><a target="_blank" href="{{healthLink}}">{{ healthLink }}</a></li>
+          {% endfor %}
+        </ul>
+
+        <h3 class="resourceTitle">Mental Health:</h3>
+        <ul>
+          {% for mental in mentalHealth %}
+          <li><a target="_blank" href="{{mental}}">{{ mental }}</a></li>
+          {% endfor %}
+        </ul>
       </div>
     </div>
+  </div>
+</div>
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends "public/templates/public_template.html" %}
+{% extends "public/base_template/public_template.html" %}
 
 {% block title %}Helping Hands | Risk Select {% endblock %}
 
@@ -22,6 +22,18 @@
               {% endfor %}
             </ul>
           </div>
+          <div class="helpName">
+            {% for orgs in organizations %}
+            <h4>{{orgs}}</h4>
+            {% endfor %}
+            <ul>
+              {% for services in services %}
+              <li>
+                {{services}}
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -32,9 +44,9 @@
 {% endblock %}
 
 <h4>Looping</h4>
-            <hr>
-                <ul>
-                    {% for lang in langs %}
+  <hr>
+  <ul>
+  {% for lang in langs %}
                     <li>
                         {{lang}}
                     </li>

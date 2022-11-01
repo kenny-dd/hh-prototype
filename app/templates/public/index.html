@@ -1,11 +1,25 @@
-{% extends "public/templates/public_template.html" %}
+{% extends "public/base_template/public_template.html" %}
 
 {% block title %}Helping Hands | Home{% endblock %}
 
 {% block main %}
-  <div class="buttonSelect">
-        <button class="goButton"><a href="/risk_select"><h1>RISK SELECT</h1></a></button> 
-        <button class="goButton"><a href="/volunteer_select"><h1>VOLUNTEER SELECT</h1></a></button> 
-        <button class="goButton"><a href="/org_rep"><h1>REPRESENT ORGANIZATION</h1></a></button> 
+
+  <div class="hero-image">
+    <div class="hero-content">
+      <div class="hero-content-inner">
+        <div class="buttonSelect">
+          <div class="hero-title">
+            <h1>Solution's for</h1>
+            <h1>those in need</h1>
+          </div>
+          
+          <a href="/risk_select"><button><p>Risk Select</p></button></a>
+          <a href="/volunteer_select"><button><p>Volunteer Select</p></button></a>
+          <a href="/register"><button><p>Represent Organization</p></button></a>
+        </div>
+      </div>
+    </div>
   </div>
+
+  
 {% endblock %}

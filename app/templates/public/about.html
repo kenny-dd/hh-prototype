@@ -1,10 +1,44 @@
-{% extends "public/templates/public_template.html" %} {% block title %}Helping
-Hands | About Us{% endblock %} 
+{% extends "public/base_template/public_template.html" %} 
+
+{% block title %}Helping Hands | About Us{% endblock %} 
 
 {% block main %}
 <h1 id="title">About Us</h1>
 <hr>
 
+<section class="about-section">
+        <div class="container">
+            <div class="row">                
+                <div class="content-column col-lg-6 col-md-12 col-sm-12 order-2">
+                    <div class="inner-column">
+                        <div class="sec-title">
+                            <span class="title">About Helping Hands</span>
+                            <h2>A Solution for Those in Need</h2>
+                        </div>
 
+                        <div class="text">
+                            Government agencies and charities fall short of effectively collaborating, sharing data, 
+                            conveying important information and staying current with situations that affect at-risk members of the public. 
+                            At-risk individuals give up on help when those organizations either lack clarity, lack accountability, seem confusing 
+                            or remain entirely unknown.                        
+                        </div>
+                        <div class="text">
+                                The Helping Hands platform will aim to simplify the process of connecting those in need with the appropriate 
+                                resources by discovering the user’s specific circumstances and tailoring a unique solution for their dilemma.
+                        </div>
+
+                        <div class="btn-box">
+                            <a href="./contact" class="theme-btn btn-style-one">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="aboutLogo" class="image-column col-lg-6">
+                    <img title="Helping Hands" src="../../static/img/HH-logo.png" alt="">
+                </div>
+              
+            </div>
+          
+    </section>
 
 {% endblock %}
