@@ -1,7 +1,17 @@
 from urllib.error import URLError
 from app import app
 
-from flask import render_template, request, redirect, abort
+from flask import Flask, render_template, request, redirect, abort, flash, url_for
+from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
+from flask_wtf import FlaskForm
+from wtforms import BooleanField, StringField, PasswordField, SubmitField, IntegerField, validators
+from wtforms.validators import DataRequired
+
+# app = Flask(__name__)
+
+# login_manager = LoginManager()
+# login_manager.init_app(app)
+# login_manager.login_view = 'login'
 
 # Home Page
 @app.route("/")
@@ -45,7 +55,7 @@ def resources():
 def contact():
     return render_template("public/contact.html")
 
-# Risk Select
+# Risk Select Form
 @app.route("/risk_select")
 def risk_select():
     selectList = [
@@ -57,7 +67,7 @@ def risk_select():
     ]
     return render_template("public/risk_select.html", selectList=selectList)
 
-# Volunteer Select
+# Volunteer Select Form
 @app.route("/volunteer_select")
 def volunteer_select():
 
@@ -71,27 +81,30 @@ def volunteer_select():
 
     return render_template("public/volunteer_select.html", selectList=selectList)
 
-# Organization Representative
-@app.route("/org_rep")
-def rep_org():
-    return render_template("public/org_rep.html")
-
-# Search Results
+# Search Results Page
 @app.route("/search_results")
 def search_results():
 
-    organizations = {
-        "Addiction Resource 1"
-    }
-
-    services = [
-        "Counseling",
-        "Addiction Programs",
-        "Psychological Services",
-        "Food",
-        "Available Today: 7am-7pm"
+    organizations = [
+        "https://www.samhsa.gov/homelessness-programs-resources/hpr-resources/trauma",
+        "https://www.wm.edu/offices/wellness/healthcenter/",
+        'https://www.mentalhealthfirstaid.org/mental-health-resources/',
     ]
-    return render_template("public/search_results.html", organizations=organizations, services=services)
+
+    localities = [
+        "123 fictional Food and Counseling 1 lane, Norfolk VA 23508",
+        "123 fictional Food 1 lane, Norfolk VA 23508",
+        "123 fictional shelter 3 lane, Norfolk VA 23508",
+    ]
+
+    programs = [
+        "Counseling",
+        "Addiction",
+        "Psychological Services",
+        "Blood Donation"
+    ]
+
+    return render_template("public/search_results.html", organizations=organizations, localities=localities, programs=programs)
 
 # Register for an Account
 @app.route("/register", methods=["GET", "POST"])
@@ -132,10 +145,26 @@ users = {
     }
 }
 
+# Login Form
+class LoginForm(FlaskForm):
+    email = StringField("Email", validators=[DataRequired()])
+    username = StringField("Username", validators=[DataRequired()])
+    password = PasswordField("Password", validators=[DataRequired()])
+    submit = SubmitField("Submit")
+
 # Log into Account
-@app.route("/login")
+@app.route("/login", methods=['GET', 'POST'])
 def login():
-    return render_template("public/login.html")
+    form = LoginForm()
+    return render_template("public/login.html", form=form)
+
+# Log out of Account
+@app.route("/logout", methods=['GET', 'POST'])
+@login_required
+def logout():
+    logout_user()
+    flash("You have been logged out!")
+    return redirect(url_for('/login'))
 
 # Help Me Page
 @app.route("/help_me")
@@ -143,56 +172,30 @@ def help_me():
     return render_template("public/help_me.html")
 
 # User Profile Page
-@app.route("/profile/<username>")
-def profile(username):
+@app.route("/profile")
+def profile():
+    return render_template("public/profile.html")
 
-    user = None
+# Organization Resource Page
+@app.route("/org_resource")
+def org_resource():
 
-    if username in users:
-        user = users[username]
+    services = [
+        "Counseling",
+        "Addiction Programs",
+        "Psychological Services",
+        "Food",
+        "Available Today: 7am-7pm"
+    ]
+    
+    return render_template("public/org_resource_page.html", services=services)
 
-    return render_template("public/profile.html", user=user, username=username)
+# Program Resource Page
+@app.route("/prog_resource")
+def program_resource():
+    return render_template("public/prog_resource_page.html")
 
-@app.route("/jinja")
-def jinja():
-
-    my_name = "Kenny"
-
-    age = 21
-
-    langs = ["Python", "JavaScript", "Bash", "C"]
-
-    friends = {
-        "Tom": "30",
-        "Amy": 60,
-        "Tony": 24,
-        "Clarissa": 24
-    }
-
-    colors = {"Red", "Green"}
-
-    cool = True
-
-    class gitRemote:
-        def __init__(self, name, description, url):
-            self.name = name
-            self.description = description
-            self.url = url
-
-        def pull(self):
-                return f"Pulling repo {self.name}"
-
-        def clone(self):
-                return f"Cloning into {self.url}"
-
-    my_remote = gitRemote(
-        name="Flask Jinja",
-        description="Template Design Tutorial",
-        url="https://github.com/kenny-dd"
-    )
-
-    def repeat(x, qty):
-        return x * qty
-
-    return render_template("public/jinja.html", my_name=my_name, age=age, langs=langs, 
-    friends=friends, colors=colors, cool=cool, gitRemote=gitRemote, repeat=repeat, my_remote=my_remote)
+# Locality Resource Page
+@app.route("/loc_resource")
+def locality_resource():
+    return render_template("public/loc_resource_page.html")

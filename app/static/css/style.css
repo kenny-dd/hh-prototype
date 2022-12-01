@@ -68,7 +68,6 @@ form {
   grid-template-columns: 100%;
   align-items: center;
   margin-bottom: 15px;
-
 }
 
 input[type="text"],
@@ -155,16 +154,24 @@ select {
 
 .content .searchResults {
   font-size: 1.25rem;
+  height: 520px;
+  width: 700px;
+  overflow-y: auto;
+  padding-left: 25px;
+  overflow-x: auto;
 }
 
-.content .searchResults h2,
+.content .searchResults h3,
 .resourceTitle {
   font-weight: bolder;
 }
 
 .content .results ul {
-  list-style: none;
   padding-left: 1.5rem;
+}
+
+.content .resourceList {
+=
 }
 
 footer {
@@ -176,6 +183,7 @@ footer {
   justify-content: center;
   text-align: center;
   padding: 3rem 0rem 1.5rem 0rem;
+  margin: 0 0 -50px 0;
 }
 
 footer h5 {
@@ -314,8 +322,8 @@ h1 {
 }
 
 .navbar-nav > li {
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .navbar-nav li a {
@@ -706,9 +714,10 @@ form {
   color: #fff;
 }
 
-
 .helpName {
-  padding-top: 16px;
+  padding-top: 10px;
+  font-size: 18px;
+  padding-left: 15px;
 }
 
 .error-handle {
@@ -745,4 +754,298 @@ form {
 }
 
 /* END ERROR HANDLE */
+.wrapper{
+  overflow: hidden;
+  max-width: 625px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+}
+.wrapper .title-text{
+  display: flex;
+  width: 200%;
+}
+.wrapper .title{
+  width: 50%;
+  font-size: 35px;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.6s cubic-bezier(0.48,-0.55,0.220,1.10);
+}
+
+
+.wrapper .slide-controls{
+  position: relative;
+  display: flex;
+  height: 50px;
+  width: 100%;
+  overflow: hidden;
+  margin: 30px 0 10px 0;
+  justify-content: space-between;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+}
+.slide-controls .slide{
+  height: 100%;
+  width: 100%;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 48px;
+  cursor: pointer;
+  z-index: 1;
+  transition: all 0.6s ease;
+}
+.slide-controls label.signup{
+  color: #000;
+}
+.slide-controls .slider-tab{
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  left: 0;
+  z-index: 0;
+  border-radius: 5px;
+  background-color: #3877c7;
+  transition: all 0.6s cubic-bezier(0.48,-0.55,0.220,1.10);
+}
+input[type="radio"]{
+  display: none;
+}
+#signup:checked ~ .slider-tab{
+  left: 50%;
+}
+#signup:checked ~ label.signup{
+  color: #fff;
+  cursor: default;
+  user-select: none;
+}
+#signup:checked ~ label.login{
+  color: #000;
+}
+#login:checked ~ label.signup{
+  color: #000;
+}
+#login:checked ~ label.login{
+  cursor: default;
+  user-select: none;
+}
+.wrapper .form-container{
+  width: 100%;
+  overflow: hidden;
+}
+.form-container .form-inner{
+  display: flex;
+  width: 200%;
+}
+.form-container .form-inner form{
+  width: 50%;
+  transition: all 0.6s cubic-bezier(0.48,-0.55,0.220,1.10);
+}
+.form-inner form .field{
+  height: 50px;
+  width: 100%;
+  margin-top: 20px;
+}
+.form-inner form .field input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding-left: 15px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  border-bottom-width: 2px;
+  font-size: 17px;
+  transition: all 0.3s ease;
+}
+.form-inner form .field input:focus{
+  border-color: #fc83bb;
+  /* box-shadow: inset 0 0 3px #fb6aae; */
+}
+.form-inner form .field input::placeholder{
+  color: #999;
+  transition: all 0.3s ease;
+}
+form .field input:focus::placeholder{
+  color: #b3b3b3;
+}
+.form-inner form .pass-link{
+  margin-top: 5px;
+}
+.form-inner form .signup-link{
+  text-align: center;
+  margin-top: 30px;
+}
+.form-inner form .pass-link a,
+.form-inner form .signup-link a{
+  color: #326bb3;
+  text-decoration: none;
+}
+.form-inner form .pass-link a:hover,
+.form-inner form .signup-link a:hover{
+  text-decoration: underline;
+}
+form .btn{
+  height: 50px;
+  width: 100%;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+form .btn .btn-layer{
+  height: 100%;
+  width: 300%;
+  position: absolute;
+  left: -100%;
+  background-color: #3877c7;
+  border-radius: 5px;
+  transition: all 0.4s ease;;
+}
+form .btn:hover .btn-layer{
+  left: 0;
+}
+form .btn input[type="submit"]{
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  position: relative;
+  background: none;
+  border: none;
+  color: #fff;
+  padding-left: 0;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.register-form {
+  display: flex;
+  justify-content: center;
+}
+
+.resource-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+}
+
+.resource-name {
+  display: flex;
+  flex-diretion: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.resource-content {
+  padding-left: 25%;
+}
+
+.resource-name img{
+  width: 200px;
+}
+
+.resource-info {
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+}
+
+.resource-risk {
+  padding-top: 2.5rem;
+}
+
+.resource-volunteer {
+  padding-top: 2.3rem;
+}
+
+.resource-volunteer .accept-volunteer{
+  display: flex;
+  flex-direction: column;
+  padding-right: 5px;
+}
+
+.resource-volunteer .notice-volunteer {
+  padding-top: 0.5rem;
+}
+
+.accept-volunteer {
+  padding-right: 5rem;
+}
+
+.resource-list {
+  padding-top: 1rem;
+}
+
+.resource-list .services {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.1rem;
+}
+
+#map {
+  height: 520px;
+  width: 700px;
+}
+
+.resource-forum {
+  padding: 2.5rem 0 1rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.resource-forum h4 {
+  padding-bottom: 0rem;
+}
+.forum-user-info ul{
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  list-style: none;
+}
+
+.forum-user-info ul li {
+  padding-right: 2rem;
+}
+
+.forum-comment {
+  padding-bottom: 1rem;
+}
+
+.forum-comment textarea {
+  background-color: #d3d3d3;
+  color: #000000;
+  resize: none;
+  height: 100px;
+  width: 1000px
+}
+
+.resource-desc {
+  padding-top: 1rem;
+}
+
+.resource-question {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1.75rem;
+  font-size: 1.1rem;
+}
+
+.resource-question ul {
+  list-style: none;
+  padding: 0;
+}
+
+.resource-question ul li b{
+  padding-right: 0.25rem;
+}
+
+.resource-question b{
+  padding-right: 0.25rem;
+}
+
 

@@ -1,0 +1,112 @@
+{% extends "public/base_template/public_template.html" %}
+
+{% block title %}Helping Hands | Locality Resource Page{% endblock %}
+
+{% block main %}
+
+<div class="resource-container">
+    <div class="resource-name">
+        <h1>{{loc.Name}}</h1>
+        <img src="https://www.dunamis.co.id/wp-content/uploads/2019/12/Vektor-16.png" alt="">
+    </div>
+
+    <div class="resource-content">
+        <div class="resource-info">
+        <h5>Address: {{loc.Address}}</h5>
+        <h5>Hours: {{loc.Hours}}</h5>
+        <h5>Phone Number: {{loc.PhoneNumber}}</h5>
+    </div>
+
+    <div class="resource-list">
+        <h4>Currently Offering:</h4>
+            <div class="services">
+                <ul>
+                {% for srvc in services %}
+                    {% if loc[srvc] %}
+                    <li>
+                        {{srvc}}
+                    </li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+    
+    <div class="resource-volunteer">
+        <div class="accept-volunteer">
+            <h5>Accepting Volunteers? </h4>
+                {% if loc.AcceptingVolunteers %}
+                    <h5 style='color:green;'>Yes</h5>
+                    <div class="notice-volunteer">
+                        <h5><b>NOTICE</b> to Volunteers</h5>
+                        <textbox class='textbox'>{{loc.VolunteerNotice}}</textbox>
+                    </div>
+                {% else %}
+                    <h5 style='color:red;'>Not at this time</h5>
+                    <div class="notice-volunteer">
+                        <h5><b>NOTICE</b> to Volunteers</h5>
+                        <textbox class="textbox">Please check back in with us at a later date!</textbox>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="resource-risk">
+            <h5><b>NOTICE</b> to those Seeking Help</h5>
+            <textbox class='textbox'>{{loc.HelpSeekerNotice}}</textbox>
+        </div>
+
+        <div class="resource-question">
+            {% if loc.ProvidesTransportation %}
+                <b>Provides Transportation? </b><a style="color:green;">Yes</a>
+            {% else %}
+                <b>Provides Transportation? </b><a style="color:red;">No</a>
+            {% endif %}
+        </div>            
+
+    <!--Voting needs to display thumb up or thumb down. Should loop through all votes tied to this pageID-->
+    <!--true => ++thumb up count-->
+    <!--false => ++thumb down count-->
+    
+    <div class="resource-question">
+        <ul>
+            <li><b>Is this location safe?</b><a>{{safeVote.Vote}}</a></li>
+            <li><b>Is this location sanitary?</b><a>{{cleanVote.Vote}}</a></li>
+            <li><b>Is staff responsive?</b><a>{{responsiveVote.Vote}}</a></li>
+        </ul>
+    </div>
+   
+    <div class="resource-question">
+        <b>Linked Organizations: </b>
+        <ul>
+            <li>{{loc.OrganizationID}}</li>
+        </ul>
+        <b>Linked Programs: </b>
+        <ul>
+            <li>{{loc.ProgramID}}</li>
+        </ul>
+
+    </div>
+    
+    <div class="resource-forum">
+            <h4><b>Forum:</b></h4>
+            <hr>
+        <div class="forum-comment">
+            <div class="forum-header">
+                <div class="forum-user-info">
+                    <ul>
+                        <li>{{forum.UserID}}</li>
+                        <li>{{forum.TimeStamp}}</li>
+                    </ul>
+                </div>
+            </div>
+                <div class="forum-content">
+                    <textarea disabled cols="60" rows="5">{{forum.Comment}}</textarea>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

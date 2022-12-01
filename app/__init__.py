@@ -1,6 +1,8 @@
 from flask import Flask
+import os
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'TeamGreen'
 
 from app import views
 

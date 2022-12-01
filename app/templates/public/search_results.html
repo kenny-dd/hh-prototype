@@ -1,54 +1,218 @@
 {% extends "public/base_template/public_template.html" %}
 
-{% block title %}Helping Hands | Risk Select {% endblock %}
+{% block title %}Helping Hands | Available Resources {% endblock %}
 
 {% block main %}
 
-<h1 id="title">Available Organizations </h1>
+<h1 id="title">Available Resources</h1>
 <hr>
 <div class="content">
       <div class="searchResults">
-        <h2>Search Results:</h2>
+        <h3>Your Results:</h3>
         <div class="results">
+
           <div class="helpName">
-            {% for orgs in organizations %}
-            <h4>{{orgs}}</h4>
-            {% endfor %}
+            <h4><b>Available Localities</b></h4>
             <ul>
-              {% for services in services %}
-              <li>
-                {{services}}
+              {% for loc in localities %}
+                <li>
+                  <a href="/loc?locid={{loc.LocalityID}}">{{loc.Name}}</a>
+                  {% for srvc in services %}
+                      {% if loc[srvc] %}
+                        <li>{{srvc}}</li>
+                      {% endif %}
+                    {% endfor %}
+                </li>
+                    <li>Hours: {{loc.Hours}}</li>
+                  {% endfor %}
+            </ul>
+          </div>
+
+          <div class="helpName">
+            <h4><b>Available Organizations</b></h4>
+            <ul>
+              {% for orgs in organizations %}
+                <li>
+		              <a href="/org?orgid={{org.LocalityID}}">{{org.Name}}</a>
+                  {% for srvc in services %}
+                    {% if org[srvc] %}
+                      <li>{{srvc}}</li>
+                    {% endif %}
+                  {% endfor %}
               </li>
+                  <li>Hours: {{org.Hours}}</li>
               {% endfor %}
             </ul>
           </div>
+
           <div class="helpName">
-            {% for orgs in organizations %}
-            <h4>{{orgs}}</h4>
-            {% endfor %}
+            <h4><b>Available Programs</b></h4>
             <ul>
-              {% for services in services %}
+            {% for prog in programs %}
               <li>
-                {{services}}
+		            <a href="/prog?progid={{prog.LocalityID}}">{{prog.Name}}</a>
+                {% for srvc in services %}
+                    {% if prog[srvc] %}
+                      <li>{{srvc}}</li>
+                    {% endif %}
+                  {% endfor %}
               </li>
+                <li>Hours: {{prog.Hours}}</li>
               {% endfor %}
             </ul>
           </div>
         </div>
       </div>
 
-      <iframe src="https://www.google.com/maps/d/embed?mid=1rcLi-jGBwfwX8qxQdwvOwSGE35t0NRU&ehbc=2E312F" width="640" height="520"></iframe>
-    </div>
-  
+      <div id="map" style="position: relative; overflow: hidden;"><div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);"><div class="gm-err-container"><div class="gm-err-content"><div class="gm-err-icon"><img src="https://maps.gstatic.com/mapfiles/api-3/images/icon_error.png" alt="" draggable="false" style="user-select: none;"></div><div class="gm-err-title">Oops! Something went wrong.</div><div class="gm-err-message">This page didn't load Google Maps correctly. See the JavaScript console for technical details.</div></div></div></div></div>
 
+    <script>
+
+  function initMap() {
+            var infowindow = new google.maps.InfoWindow();
+
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 14,
+                center: { lat: 36.8853, lng: -76.3059 }
+            });
+
+            //This string is the standard message given for the user's marker. It'll be used later in the code.
+            const contentString = "This is your approximate location within a few miles. This is gathered based on ip address.";
+
+
+            //This block of constants is the url's for different png's for each organization type, in order of precedence. (food outranks shelter which outranks medicine, etc)
+            const imageFood = "https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_100,q_75,w_100/v1/clients/marquettemi/food_d4df5aeb-907d-4063-9c37-bfab5514ffc4.png";
+            const imageShelter = "https://content.app-sources.com/s/33877404664267221/uploads/Images/bed_icon-3782140.png";
+            const imageMedicine = "https://icons.iconarchive.com/icons/webalys/kameleon.pics/64/Nurse-1-icon.png";
+            const imageClothing = "https://dynamic-assets.coinbase.com/dfaeb63639cb2a870022d6320c32a62943407e14b40b34e8983eae3c847a135c4a6c10c9fbbf2e6e4005505b6d377117194e22748bbc4cd336acec4b0203a50f/asset_icons/f318773b240e9cf19fd701b1af2cdeb38766dde9dd08f7f6ffd5cc628a3f8b1a.png";
+            const imageSupplies = "https://tlg-fashion.s5.cdn-upgates.com/_cache/d/4/d460efaa03516b3349d0bab31bbb7cc7.png";
+            const imageAddiction = "https://i.ebayimg.com/images/g/7HoAAOSw55ZgSk7n/s-l64.jpg";
+            const imageCounseling = "https://cdn.iconscout.com/icon/premium/png-64-thumb/mental-health-2649322-2820883.png";
+            const imageLegal = "https://pbs.twimg.com/media/DhNYcRCWkAAakLr.png";
+            //const imageVeteran = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+            //const imageFamily = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+
+            //This is used in case all booleans for resource types are "False"
+            const imageDefault = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+
+            //This is the main function of the program. Each part of addMarker() is explained below.
+            function addMarker(lat,long,name,address,phonenumber,hours,food,shelter,medicine,clothing,supplies,addiction,counseling,legal,veteran,family){
+
+                //This is just a placeholder link. Right now, all organization markers point to this website. It can be customized later.
+                var link = '<h2><a href="https://www.wesleyosteen.com/example-organization">Website</a> </h2>';
+
+                //This puts all the strings in locality + the generic url above into one big string. The big string has line breaks and is intended to
+                //be neatly(ish) displayed in an info box for each marker
+                var info = name + "<br>" + "Address: " + address + "<br>" + "Phone number: " + phonenumber + "<br>" + "Hours: " + hours + "<br>" + "Link: " + link;
+                var message = name;
+
+                //These lines go in reverse order of precedence and change the icon on the map accordingly
+                //Also there's a default image of a flag that will be shown if ALL boolean statements in locality are false for some odd reason
+                var imageHolder = imageDefault;
+                if (counseling == "True") {
+                    imageHolder = imageCounseling;
+                }
+                if (addiction == "True") {
+                    imageHolder = imageAddiction;
+                }
+                if (supplies == "True") {
+                    imageHolder = imageSupplies;
+                }
+                if (clothing == "True") {
+                    imageHolder = imageClothing;
+                }
+                if (medicine == "True") {
+                    imageHolder = imageMedicine;
+                }
+                if (shelter == "True") {
+                    imageHolder = imageShelter;
+                }
+                if (food == "True") {
+                    imageHolder = imageFood;
+                }
+
+                //This places the organization marker on the map
+                var point = new google.maps.LatLng(lat,long);
+                var newmarker = new google.maps.Marker({
+                    position: point,
+                    map: map,
+                    title: name,
+                    icon: imageHolder,
+                });
+
+                //This allows the user to click on each marker and a popup shows up. It also ensures that only one infobox is shown at a time to prevent clutter.
+                 google.maps.event.addListener(newmarker, 'click', function(evt){
+                      infowindow.setContent(info)
+                      infowindow.open(map,newmarker)
+                  });
+            }
+
+
+            //This if statement checks for user location and attempts to place a standard red marker on user's location
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    var Yourmarker = new google.maps.Marker({
+                        position: pos,
+                        map: map,
+                        title: 'Your approximate position'
+                    });
+                    map.setCenter(pos);
+
+                    const Yourinfowindow = new google.maps.InfoWindow({
+                        content: contentString,
+                        ariaLabel: "UserLocation",
+                    });
+
+                    Yourmarker.addListener("click", () => {
+                        Yourinfowindow.open({
+                            anchor: Yourmarker,
+                            map,
+                        });
+                    });
+
+                }, function () {
+                    //handle location error (i.e. if user disallowed location access manually)
+
+                    //The intent is for me to put something in here to request an alternate way to get location if the user decides not to allow device location
+                    //This is intentionally left blank becuase I'm not done with zip code localization yet.
+
+                });
+            } else {
+                // Browser doesn't support Geolocation
+
+                //The intent is for me to put something similar as above in here.
+            }
+
+
+
+            //loop that reads elements from write_markers.py
+            {% for locality in localities %}
+            addMarker({{ locality.Latitude }} , {{ locality.Longitude }} , '{{locality.Name}}', '{{locality.Address}}', '{{locality.PhoneNumber}}', '{{locality.Hours}}', '{{ locality.Food }}', '{{ locality.Shelter }}', '{{ locality.Medicine }}', '{{ locality.Clothing }}', '{{ locality.Supplies }}', '{{ locality.Addiction }}', '{{ locality.Counseling }}', '{{ locality.Legal}}', '{{ locality.Veteran}}', '{{ locality.Family }}' );
+            {% endfor %}
+
+            google.maps.event.addDomListener(window, 'load', initMap);
+            infoWindow = new google.maps.InfoWindow();
+
+            }
+
+
+	    //google.maps.event.addDomListener(window, 'load', initMap);
+        //infoWindow = new google.maps.InfoWindow();
+        window.initMap = initMap;
+
+
+        //This is the unique key owned by Helping Hands that gives us permission to use Google Maps API. It's required.
+    </script>
+    <script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaay8k7gvo1mghAvBKsXtovfYWvqpOQkI&callback=initMap&libraries=places,geometry&solution_channel=GMP_QB_locatorplus_v6_cABCDE">
+    </script>
+
+</div>
+
+    
+    
 {% endblock %}
 
-<h4>Looping</h4>
-  <hr>
-  <ul>
-  {% for lang in langs %}
-                    <li>
-                        {{lang}}
-                    </li>
-                    {% endfor %}
-                </ul>

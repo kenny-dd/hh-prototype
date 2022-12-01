@@ -1,0 +1,82 @@
+{% extends "public/base_template/public_template.html" %}
+
+{% block title %}Helping Hands | Program Resource Page{% endblock %}
+
+{% block main %}
+<div class="resource-container">
+   <div class="resource-name">
+    <h1>{{prog.Name}}</h1>
+    <img src="https://www.shimadzu.com.sg/an/sites/shimadzu.com.sg.an/files/resource-library-01_0.png" alt="">
+    
+</div>
+   
+   <div class="resource-content">
+    <div class="resource-desc">
+        <h4>Description:</h4>
+        <p>{{prog.Description}}</p>
+   </div>
+        <div class="resource-list">
+        <h4>Currently Offering:</h4>
+            <div class="services">
+                <ul>
+                {% for srvc in services %}
+                    {% if prog[srvc] %}
+                    <li>
+                        {{srvc}}
+                    </li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    
+    <div class="resource-volunteer">
+            <div class="accept-volunteer">
+                <h5>Accepting Volunteers? </h4>
+                    {% if {{prog.acceptingVolunteers}} %}
+                        <h5 style='color:green;'>Yes</h5>
+                        <div class="notice-volunteer">
+                            <h5><b>NOTICE</b> to Volunteers</h5>
+                            <textbox class='textbox'>{{prog.VolunteerNotice}}</textbox>
+                        </div>
+                    {% else %}
+                            <h5 style='color:red;'>Not at this time</h5>
+                        <div class="notice-volunteer">
+                            <h5><b>NOTICE</b> to Volunteers</h5>
+                            <textbox class="textbox">Please check back in with us at a later date!</textbox>
+                        </div>
+                    {% endif %}
+            </div>
+        </div>
+
+        <div class="resource-risk">
+                <h5><b>NOTICE</b> to those Seeking Help</h5>
+                <textbox class='textbox'>{{prog.HelpSeekerNotice}}</textbox>
+
+        </div>
+
+
+
+        <div class="resource-forum">
+            <h4><b>Forum:</b></h4>
+                <hr>
+
+        <div class="forum-comment">
+            <div class="forum-header">
+                <div class="forum-user-info">
+                    <ul>
+                        {% for forum in forums %}
+                        <li>{{forum.UserID}}</li>
+                        <li>{{forum.TimeStamp}}</li>
+                    </ul>
+                </div>
+            </div>
+                <div class="forum-content">
+                    <textarea disabled cols="60" rows="5">{{forum.Comment}}</textarea>
+                </div>
+                    {% endfor %}
+            </div>
+        </div>    
+   </div>
+</div>
+{% endblock %}

@@ -4,7 +4,7 @@
 
 {% block main %}
 
-<h1 id="title">Risk Select</h1>
+<h1 id="title">Risk Selection</h1>
 <hr>
 <form id="survey-form">
       <div class="form-group">
@@ -22,7 +22,7 @@
     <div required class="input-group">
         <ul>
           {% for list in selectList %}
-            <li><input type="checkbox" name="{list[0]}"> {{list[1]}}</li>
+            <li><input type="checkbox" name="{{list[0]}}"> {{list[1]}}</li>
           {% endfor %}      
         </ul>
     </div>
