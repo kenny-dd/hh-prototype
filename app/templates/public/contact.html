@@ -1,43 +1,66 @@
-{% extends "public/base_template/public_template.html" %}
-
-{% block title %}Helping Hands | Contact{% endblock %}
+{% extends "public/base_template/public_template.html" %} 
+{% block title%}Helping Hands | Contact{% endblock %} 
 
 {% block main %}
-<br>
-  <div class="contact-form p-5">
+<br />
+<div class="contact-form p-5">
   <h1>Contact Us</h1>
-  <br>
-    <div class="title-form mb-5">
-      <h3>Get in touch</h3>
-      <p>We’re very approachable and would love to speak to you. Feel free to send us an email!</p>
-    </div>
-  
-    <div class="form-box">
-      <h4>Send Us a Message</h4>
-      
-            <form>
-              <fieldset class="form-group">
-                <label for="yourName">Your Name</label>
-                <input type="text" class="form-control" id="yourName" placeholder="Enter Your Name" required>
-              </fieldset>
-
-              <fieldset class="form-group">
-                <label for="yourEmail">Email Address</label>
-                <input type="email" class="form-control" id="yourEmail" placeholder="Enter Your Email" required>
-              </fieldset>
-
-              <fieldset class="form-group">
-                <label for="yourPhone">Number</label>
-                <input type="text" class="form-control" id="yourPhone" placeholder="Enter Your Phone">
-              </fieldset>
-
-              <fieldset class="form-group">
-                <label for="yourEmail">Your message</label>
-                <textarea class="form-control" rows="6" placeholder="Enter message here..."></textarea>
-              </fieldset>
-              <button type="submit" class="submit-btn" required>Send Message</button>
-            </form>
-    </div>
+  <br />
+  <div class="title-form mb-5">
+    <h3>Get in touch</h3>
+    <p>
+      We’re very approachable and would love to speak to you. Feel free to send
+      us an email!
+    </p>
   </div>
-  <br>
+
+  <div class="form-box">
+    <h4>Send Us a Message</h4>
+
+    <form class="contact-body">
+      <fieldset class="form-group">
+        <label for="yourName">Your Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="yourName"
+          placeholder="Enter Your Name"
+          required
+        />
+      </fieldset>
+
+      <fieldset class="form-group">
+        <label for="yourEmail">Email Address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="yourEmail"
+          placeholder="Enter Your Email"
+          required
+        />
+      </fieldset>
+
+      <fieldset class="form-group">
+        <label for="yourPhone">Number</label>
+        <input
+          type="text"
+          class="form-control"
+          id="yourPhone"
+          placeholder="Enter Your Phone"
+        />
+      </fieldset>
+
+      <fieldset class="form-group">
+        <label for="yourEmail">Your message</label>
+        <textarea
+          class="form-control"
+          rows="6"
+          placeholder="Enter message here..."
+        ></textarea>
+      </fieldset>
+      <button type="submit" class="submit-btn" required>Send Message</button>
+    </form>
+  </div>
+</div>
+<br />
 {% endblock %}

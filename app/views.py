@@ -23,6 +23,36 @@ def index():
 def about():
     return render_template("public/about.html")
 
+
+@app.route("/resource_register")
+def resource_register():
+
+    services = [
+        ['food', 'Food'],
+        ['shelter', 'Shelter'],
+        ['medicine', 'Medicine'],
+        ['mentalHealth', 'Mental Health'],
+        ['addiction', 'Addiction'],
+    ]
+    return render_template("public/resource_register.html", services=services)
+
+
+@app.route("/account")
+def account():
+    return render_template("public/account.html")
+
+@app.route("/edit_resource")
+def edit_resource():
+
+    services = [
+        ['food', 'Food'],
+        ['shelter', 'Shelter'],
+        ['medicine', 'Medicine'],
+        ['mentalHealth', 'Mental Health'],
+        ['addiction', 'Addiction'],
+    ]
+
+    return render_template("public/edit_resource_page.html", services=services)
 # Resources Page
 @app.route("/resources")
 def resources():
@@ -179,16 +209,7 @@ def profile():
 # Organization Resource Page
 @app.route("/org_resource")
 def org_resource():
-
-    services = [
-        "Counseling",
-        "Addiction Programs",
-        "Psychological Services",
-        "Food",
-        "Available Today: 7am-7pm"
-    ]
-    
-    return render_template("public/org_resource_page.html", services=services)
+    return render_template("public/org_resource_page.html")
 
 # Program Resource Page
 @app.route("/prog_resource")

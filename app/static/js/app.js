@@ -15,3 +15,4 @@
     signupBtn.click();
     return false;
   };
+

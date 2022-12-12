@@ -1,0 +1,105 @@
+{% extends "public/base_template/public_template.html" %} {% block title
+%}Helping Hands | Account Page{% endblock %} {% block main %}
+
+<div class="register-form">
+  <div class="wrapper">
+    <div class="title-text">
+      <div id="user-title" class="title login">Account</div>
+    </div>
+
+    <div class="form-container">
+      <div class="form-inner">
+        <form action="#" class="login">
+          <div class="field">
+            <input
+              type="email"
+              placeholder="Email Address"
+              name="Email"
+              required
+              value=""
+            />
+          </div>
+          <div class="field">
+            <input
+              type="password"
+              placeholder="Password"
+              name="Password"
+              required
+              value=""
+            />
+          </div>
+
+          <div class="field">
+            <input
+              type="text"
+              placeholder="First Name"
+              name="FirstName"
+              required
+              value=""
+            />
+          </div>
+          <div class="field">
+            <input
+              type="text"
+              placeholder="Last Name"
+              name="LastName"
+              required
+              value=""
+            />
+          </div>
+          <div class="field">
+            <input
+              type="text"
+              placeholder="Phone Number"
+              name="PhoneNumber"
+              required
+              value=""
+            />
+          </div>
+
+          <div class="signup-link">
+            Want to represent an organization or resource?
+            <a href="/resource_register">Register</a>
+          </div>
+          
+          <div class="field btn">
+            <div class="btn-layer"></div>
+            <input type="submit" name="login" value="Update" />
+          </div>
+        </form>
+
+        
+      </div>
+    </div>
+  </div>
+
+      <div class="related-resources">
+        <div class="registered-content">
+          <div class="title-text">
+          <div class="resources-list-title">Your Registered Resources</div>
+        </div>
+
+        <div class="registered-list">
+          <ol>
+          <li>
+            <a href="./org_resource">Susan's Kitchen</a>
+            <a href="./edit_resource">Edit</a>
+          </li>
+          <li>
+            <a href="">Tom's Food Supply</a>
+            <a href="./edit_resource">Edit</a>
+          </li>
+          <li>
+            <a href="">Brian's Medical Center</a>
+            <a href="./edit_resource">Edit</a>
+          </li>
+        </ol>
+        </div>
+        </div>
+        
+      </div>  
+  </div>
+</div>
+
+
+{% endblock %}
