@@ -2,7 +2,7 @@ from flask import Flask
 import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'TeamGreen'
+app.config['SECRET_KEY']="TeamGreen2022"
 
 from app import views
 

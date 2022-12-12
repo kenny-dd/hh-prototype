@@ -6,10 +6,11 @@
 
 <h1 id="title">Risk Selection</h1>
 <hr>
+<p style="color:red;">{{error_string}}</p>
 <form id="survey-form">
       <div class="form-group">
       <label id="name-label" for="name">Zipcode: </label>
-      <input id="name" type="text" required placeholder="5 Digit Zipcode">
+      <input id="name" type="text" placeholder="5 Digit Zipcode">
       <span class="validity"></span>
       </div>
       
@@ -21,20 +22,21 @@
       <p>What do you need help with? <br>(Check all that apply)</p>
     <div required class="input-group">
         <ul>
-          {% for list in selectList %}
-            <li><input type="checkbox" name="{{list[0]}}"> {{list[1]}}</li>
+          {% for srvc in services %}
+	        <li><input type="checkbox" id="{{srvc}}" name="{{srvc}}"> {{srvc}}</li>
           {% endfor %}      
         </ul>
     </div>
       </div>
     
-      <div class="search-group">
-        <a class='search-btn' href="/search_results">SEARCH</a>
+      <div class="search-group">	
+	      <input class="search-btn" name="search" type="submit" value="SEARCH">
       </div>
       
+    <div class="helpButton">
+	    <input class="search-btn" name="sendhelp" type="submit" value="Send Help!">
+
+    </div>
     </form> 
 
-    <div class="helpButton">
-      <a href="help_me">HELP ME!</a>
-    </div>
 {% endblock %}

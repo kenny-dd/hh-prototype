@@ -1,0 +1,75 @@
+{% extends "public/base_template/public_template.html" %} {% block title
+%}Helping Hands | Edit Resource{% endblock %} {% block main %}
+
+<div class="register-form">
+  <div class="wrapper">
+    <div class="title-text">
+      <div id="user-title" class="title login">Update Resource Page</div>
+    </div>
+
+    <div class="form-container">
+      <div class="form-inner">
+        <form action="#" class="update">
+          <div class="field">
+            <input
+              type="text"
+              placeholder="Resource Name"
+              name="resource_name"
+              required
+              value=""
+            />
+          </div>
+          <div class="field">
+            <input
+              type="text"
+              placeholder="Resource Address"
+              name="resource_address"
+              required
+              value=""
+            />
+          </div>
+
+          <div class="field">
+            <input
+              type="text"
+              placeholder="Resource Hours"
+              name="resource_hours"
+              required
+              value=""
+            />
+          </div>
+          <div class="field">
+            <input
+              type="tel"
+              placeholder="Resource Phone Number"
+              name="resource_number"
+              required
+              value=""
+            />
+          </div>
+
+          <div class="check-group">
+            <p>Currently Offered Services: <br /></p>
+            <div required class="input-group">
+              <ul>
+                {% for srvc in services %}
+                <li>
+                  <input type="checkbox" id="{{srvc}}" name="{{srvc}}" />
+                  {{srvc}}
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+
+          <div class="field btn">
+            <div class="btn-layer"></div>
+            <input type="submit" name="login" value="Update" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

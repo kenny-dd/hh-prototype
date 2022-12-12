@@ -1,0 +1,178 @@
+{% extends "public/base_template/public_template.html" %} 
+{% block title %}Helping Hands | Resource Registration{% endblock %} 
+
+<script>
+  document.getElementById("resourceClaim").style.display = "none";
+</script>
+
+{% block main %}
+
+<div class="register-form">
+  <div class="wrapper">
+    <div class="title-text">
+      <div id="user-title" class="title login">Register a Resource</div>
+    </div>
+
+    <div class="form-container">
+      <div class="form-inner">
+
+        <form id="resourceRegister" action="#" class="resource-register">
+          <div class="resource-radio-buttons">
+            <h6>What type of resource are you registering?</h6>
+
+            <ul>
+              <li>
+                <input type="radio" class="" id="btns1" name="resource" value="org" onclick="showResourceRegister()"/>
+                <label for="html">Broad organization that serves an area</label>
+              </li>
+
+              <li>
+                <input type="radio" class="" id="btns1" name="resource" value="prog" onclick="showResourceRegister()"/>
+                <label for="html">Program operating in an area</label>
+              </li>
+
+              <li>
+                <input type="radio" class="" id="btns1" name="resource" value="loc" onclick="showResourceRegister()"/>
+                <label for="html">Location civilians can attend</label>
+              </li>
+
+              <li>
+                <input type="radio" class="" id="resourceClaimBtn" name="resource" value="existing" onclick="showResourceClaim()"/>
+                <label for="html">Existing resource page</label>
+              </li>
+            </ul>
+          </div>
+
+          <div class="field">
+            <input
+              type="text"
+              placeholder="Resource Name"
+              name="resource_name"
+              required
+              value=""
+            />
+          </div>
+          <div class="field">
+            <input
+              type="text"
+              placeholder="Resource Address"
+              name="resource_address"
+              required
+              value=""
+            />
+          </div>
+
+          <div class="field">
+            <input
+              type="text"
+              placeholder="Resource Hours"
+              name="resource_hours"
+              required
+              value=""
+            />
+          </div>
+          <div class="field">
+            <input
+              type="tel"
+              placeholder="Resource Phone Number"
+              name="resource_number"
+              required
+              value=""
+            />
+          </div>
+
+          <div class="check-group">
+            <h6>What services are offered? <br /></h6>
+            <div required class="resource-select-list">
+              <ul>
+                {% for srvc in services %}
+                <li>
+                  <input type="checkbox" id="{{srvc}}" name="{{srvc}}" />
+                  {{srvc}}
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+
+          <div class="field btn">
+            <div class="btn-layer"></div>
+            <input
+              type="submit"
+              name="login"
+              value="Register Your Resource Page"
+            />
+          </div>
+        </form>
+        <form id="resourceClaim" action="#" class="resource-register" style="display:none">
+          <div class="resource-radio-buttons">
+            <h6>What type of resource are you registering?</h6>
+
+            <ul>
+              <li>
+                <input type="radio" class="" id="btns1" name="resource" value="org" onclick="showResourceRegister()"/>
+                <label for="html">Broad organization that serves an area</label>
+              </li>
+
+              <li>
+                <input type="radio" class="" id="btns1" name="resource" value="prog" onclick="showResourceRegister()"/>
+                <label for="html">Program operating in an area</label>
+              </li>
+
+              <li>
+                <input type="radio" class="" id="btns1" name="resource" value="loc" onclick="showResourceRegister()"/>
+                <label for="html">Location civilians can attend</label>
+              </li>
+
+              <li>
+                <input type="radio" class="resourceClaimBtn" id="resourceClaimBtn" name="resource" value="existing" onclick="showResourceClaim()" checked="checked"/>
+                <label for="html">Existing resource page</label>
+              </li>
+            </ul>
+          </div>
+
+          <div class="field">
+            <input
+              type="url"
+              placeholder="Resource URL"
+              name="resource_URL"
+              required
+              value=""
+            />
+          </div>
+      
+          <div class="field btn">
+            <div class="btn-layer"></div>
+            <input
+              type="submit"
+              name="login"
+              value="Claim Your Resource Page"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+<script src="../../static/js/app.js"></script>
+
+<script>
+  function showResourceClaim(){
+    document.getElementById("resourceClaim").style.display = "inline";
+    document.getElementById("resourceRegister").style.display = "none";
+    document.getElementById("resourceClaimBtn").checked = true;
+
+}
+function showResourceRegister(){
+    document.getElementById("resourceClaim").style.display = "none";
+    document.getElementById("resourceRegister").style.display = "inline";
+    document.getElementById("resourceClaimBtn").checked = false;
+
+}
+</script>
+
+{% endblock %}

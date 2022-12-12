@@ -30,7 +30,8 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-light fixed-top">
+    
+    <nav id="hh-nav" class="navbar navbar-expand-lg bg-light fixed-top">
       <div class="container">
         <a href="/" class="navbar-brand">
           <img src="../../../static/img/HH-logo.png" alt="HH Logo" />
@@ -65,12 +66,12 @@
             <!-- <li class="nav-item mx-auto">
               <a class="nav-link" href="/admin/dashboard">Admin</a>
             </li> -->
-              <li class="nav-item mx-auto">
-              <a class="nav-link" href="/login">Login</a>
-              </li>
-              <li class="nav-item mx-auto">
+            <li class="nav-item mx-auto">
                 <a class="nav-link" href="/register">Register</a>
               </li>
+            <li class="nav-item mx-auto">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -99,6 +100,7 @@
         <h5><a href="https://www.cs.odu.edu/~411green/" target="_blank">Copyright © Team Green Fall 2022</a></h6>
       </div>
     </footer>
+
 
     <!-- <footer>
       <div class="links">

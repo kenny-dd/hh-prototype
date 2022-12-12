@@ -5,7 +5,7 @@
 {% block main %}
     <h1 id="title">Help Is On The Way!</h1>
     <hr>
-
+    <font color="red">{{error_string}}</font>
     <form id="survey-form">
 
         <div class="form-title">
@@ -29,7 +29,7 @@
     </div>
     
     <div class="form-group">
-        <input id="submit" class="submit-btn" type="submit" value="SUBMIT">
+        <input id="submit" name='sendhelp_init' class="submit-btn" type="submit" value="SUBMIT">
     </div>
       
     </form> 
